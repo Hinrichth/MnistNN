@@ -32,6 +32,7 @@ YAML parsing: https://github.com/jbeder/yaml-cpp.git
 ## Installation
 1. Ensure you have C++17 or newer.
 2. In your terminal:
+```
 cd project-path-in-your-local
 mkdir build
 cd build
