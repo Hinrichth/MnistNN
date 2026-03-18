@@ -1,0 +1,56 @@
+data:
+  dataset_dir: "../mnist"
+  train_images: "emnist-digits-train-images-idx3-ubyte"
+  train_labels: "emnist-digits-train-labels-idx1-ubyte"
+  test_images: "emnist-digits-test-images-idx3-ubyte"
+  test_labels: "emnist-digits-test-labels-idx1-ubyte"
+
+  image_size:
+    height: 28
+    width: 28
+
+  val_ratio: 0.00033  # for pipeline test
+
+  batch_size: 64
+  shuffle: true
+  # n_channels: 1
+
+model:
+  layers:
+    - type: Input
+      in: 784
+      out: 784
+      
+    - type: Dense
+      in: 784
+      out: 50
+
+    - type: Activation
+      kind: Sigmoid
+      in: 50
+      out: 50
+
+    - type: Dense
+      in: 50
+      out: 10
+
+train:
+  epochs: 5
+
+  # sgd optimizer
+  optimizer:
+    learning_rate: 0.01
+    momentum: 0
+    dampening: 0
+    weight_decay: 0
+    nesterov: false
+
+  # ReduceLROnPlateau
+  scheduler:
+    patience: 10
+    reduction_factor: 0.1
+    minimal_lr: 0
+    minimal_lr_change: 1e-08
+  
+  early_stopping:
+    patience: 20
